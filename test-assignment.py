@@ -10,7 +10,7 @@ class TestClimateEDA(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         # Load the notebook
-        with open('climate_eda.ipynb', 'r', encoding='utf-8') as f:
+        with open('starter-notebook.ipynb', 'r', encoding='utf-8') as f:
             cls.notebook = nbformat.read(f, as_version=4)
         
         # Execute the notebook
