@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: '3.8'
 
@@ -26,7 +26,14 @@ jobs:
     - name: Run tests and calculate grade
       run: |
         # Generate climate data
-        python climate_data.py
+         jupyter nbconvert --to script climate_eda.ipynb --output climate_eda
+        
+        # Remove Jupyter magic commands to avoid execution errors
+        sed -i '/%matplotlib/d' climate_eda.py  
+        sed -i "/get_ipython()/d" climate_eda.py  
+
+        # Execute the converted Python script
+        python climate_eda.py 
         
         # Run tests
         python -m unittest test_climate_eda.py
