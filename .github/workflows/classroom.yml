@@ -37,12 +37,12 @@ jobs:
         python climate_eda.py 
         
         # Run tests
-        python -m unittest test-assignment.py
+        python -m unittest test_climate_eda.py
         
         # Extract grade from test output
         GRADE=$(python -c "
         import unittest
-        from test-assignment import TestClimateEDA
+        from test_climate_eda import TestClimateEDA
         test_case = TestClimateEDA()
         print(test_case.calculate_grade())
           ")
