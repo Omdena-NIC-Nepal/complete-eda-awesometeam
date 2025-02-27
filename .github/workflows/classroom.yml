@@ -29,7 +29,7 @@ jobs:
         # Generate climate data
         python climate_data.py
         
-        # Run tests
+        # Run test
         python -m unittest test_climate_eda.py
         
         # Extract grade from test output
