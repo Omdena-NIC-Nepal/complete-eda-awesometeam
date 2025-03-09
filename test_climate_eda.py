@@ -12,6 +12,11 @@ class TestClimateEDA(unittest.TestCase):
         # Load the notebook
         with open('climate_eda.ipynb', 'r', encoding='utf-8') as f:
             cls.notebook = nbformat.read(f, as_version=4)
+
+        # Extract all code from notebook cells
+        cls.all_code = "\n".join(
+            cell.source for cell in cls.notebook.cells if cell.cell_type == "code"
+        )
         
         # Execute the notebook
         ep = ExecutePreprocessor(timeout=600, kernel_name='python3')
